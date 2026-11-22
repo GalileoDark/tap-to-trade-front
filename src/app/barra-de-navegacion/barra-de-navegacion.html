@@ -1,0 +1,22 @@
+<nav class="barra-lateral" [class.expandida]="estaExpandida">
+
+  <ul class="lista-navegacion">
+    @for (item of opcionesMenu; track item.titulo) {
+      <li class="item-navegacion">
+        <button
+          type="button"
+          class="btn-opcion"
+          [attr.aria-label]="item.titulo"
+          (click)="alPulsarItem(item)"
+        >
+          <img class="icono-img" [src]="item.icono" [alt]="item.titulo" />
+
+          @if (estaExpandida) {
+            <span class="texto">{{ item.titulo }}</span>
+          }
+        </button>
+      </li>
+    }
+  </ul>
+
+</nav>
