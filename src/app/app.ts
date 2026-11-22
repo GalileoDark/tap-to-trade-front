@@ -1,8 +1,8 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { BarraDeNavegacion } from './barra-de-navegacion/barra-de-navegacion';
 
 @Component({
-  imports: [RouterOutlet],
+  imports: [BarraDeNavegacion],
   selector: 'app-root',
   styleUrl: './app.css',
   templateUrl: './app.html',
