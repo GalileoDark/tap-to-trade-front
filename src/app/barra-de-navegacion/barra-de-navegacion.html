@@ -1,4 +1,4 @@
-<nav class="barra-lateral" [class.expandida]="estaExpandida">
+<nav class="barra-lateral" [class.expandida]="estaExpandida()">
 
   <ul class="lista-navegacion">
     @for (item of opcionesMenu; track item.titulo) {
@@ -11,7 +11,7 @@
         >
           <img class="icono-img" [src]="item.icono" [alt]="item.titulo" />
 
-          @if (estaExpandida) {
+          @if (estaExpandida()) {
             <span class="texto">{{ item.titulo }}</span>
           }
         </button>

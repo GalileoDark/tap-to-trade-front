@@ -1,0 +1,18 @@
+.layout-principal {
+  display: flex;
+  min-height: 100vh;
+  width: 100%;
+}
+
+.contenido-principal {
+  flex: 1; /* Ocupa todo el ancho restante a la derecha de la barra */
+  min-width: 0; /* Evita que hijos con flex/grid desborden el ancho */
+  margin-left: clamp(4.25rem, 6.5vw, 6.5rem);
+  padding: 20px; /* Margen exterior respecto a la barra y bordes */
+  box-sizing: border-box;
+  transition: margin-left 0.25s ease;
+}
+
+.contenido-principal.barra-expandida {
+  margin-left: clamp(13rem, 19vw, 17rem);
+}

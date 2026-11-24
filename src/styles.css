@@ -2,3 +2,25 @@ html, body {
   margin: 0;
   padding: 0;
 }
+
+:root {
+  /* Modo claro por defecto */
+  --bg-bloque: #fffdfb;
+  --bg-suave: #faf5ef;
+  --borde-bloque: #e7ddd0;
+  --texto-principal: #1c1917;
+  --texto-secundario: #57534e;
+  --acento: #c2410c;
+  --acento-hover: #9a3412;
+}
+
+.dark-theme {
+  /* Modo noche */
+  --bg-bloque: #14110f;
+  --bg-suave: #1f1a17;
+  --borde-bloque: #362d27;
+  --texto-principal: #fafaf9;
+  --texto-secundario: #a8a29e;
+  --acento: #fb923c;
+  --acento-hover: #f97316;
+}
