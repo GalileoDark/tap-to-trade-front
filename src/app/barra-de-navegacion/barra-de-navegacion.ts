@@ -2,10 +2,9 @@ import {
   Component,
   ElementRef,
   HostListener,
-  inject,
+  inject, model,
   output,
-  OutputEmitterRef,
-  signal,
+  OutputEmitterRef
 } from '@angular/core';
 
 export interface OpcionesMenu {
@@ -24,8 +23,7 @@ export interface OpcionesMenu {
 export class BarraDeNavegacion {
   private readonly elementRef = inject(ElementRef);
 
-  estaExpandida: boolean = false;
-  showFiller = signal(false);
+  estaExpandida = model<boolean>(false);
   opcionSeleccionada: OutputEmitterRef<string> = output<string>();
 
   opcionesMenu: OpcionesMenu[] = [
@@ -35,7 +33,7 @@ export class BarraDeNavegacion {
     {
       titulo: 'Mi colección',
       icono: '/images/Icono-mi-coleccion.png',
-      ruta: 'Mi coleccion',
+      ruta: 'miColeccion',
       tipo: 'opcion',
     },
   ];
@@ -52,7 +50,7 @@ export class BarraDeNavegacion {
   }
 
   alternarBarra(): void {
-    this.estaExpandida = !this.estaExpandida;
+    this.estaExpandida.update((valorActual) => !valorActual);
   }
 
   seleccionarOpcion(ruta: string): void {
@@ -61,7 +59,7 @@ export class BarraDeNavegacion {
 
   @HostListener('document:click', ['$event'])
   onClickFuera(event: MouseEvent): void {
-    if (!this.estaExpandida) {
+    if (!this.estaExpandida()) {
       return;
     }
 
@@ -69,7 +67,7 @@ export class BarraDeNavegacion {
     const clicDentroDeLaBarra = objetivo ? this.elementRef.nativeElement.contains(objetivo) : false;
 
     if (!clicDentroDeLaBarra) {
-      this.estaExpandida = false;
+      this.estaExpandida.set(false);
     }
   }
 }

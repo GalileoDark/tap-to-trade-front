@@ -1,1 +1,10 @@
-<app-barra-de-navegacion></app-barra-de-navegacion>
+<div class="layout-principal">
+  <app-barra-de-navegacion [(estaExpandida)]="barraExpandida"></app-barra-de-navegacion>
+
+  <main
+    class="contenido-principal"
+    [class.barra-expandida]="barraExpandida"
+  >
+    <router-outlet></router-outlet>
+  </main>
+</div>

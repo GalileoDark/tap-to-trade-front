@@ -1,0 +1,58 @@
+<section class="coleccion-contenedor">
+  <header class="coleccion-cabecera">
+    <h2>Mi colección</h2>
+    <button
+      type="button"
+      class="coleccion-ver-mas"
+      (click)="alternarVerMas()"
+    >
+      {{ mostrarTodos() ? 'Ver menos' : 'Ver más' }}
+    </button>
+  </header>
+
+  <div class="coleccion-cuerpo">
+    <div class="grid-coleccion" #gridColeccion>
+      @for (item of itemsVisibles(); track item.id; let i = $index) {
+        <article
+          class="tarjeta-coleccion"
+          [class.tarjeta-oculta]="!mostrarTodos() && i >= maxEnFila()"
+        >
+          <div class="tarjeta-imagen-wrap">
+            <img
+              [src]="item.imagen"
+              [alt]="item.nombre"
+              class="tarjeta-imagen"
+            />
+          </div>
+
+          <div class="tarjeta-contenido">
+            <h3 class="tarjeta-titulo">{{ item.nombre }}</h3>
+
+            <div class="tarjeta-cantidad-fila">
+              <span class="tarjeta-cantidad-label">Cantidad:</span>
+              <span class="tarjeta-cantidad-valor">{{ item.cantidad }}</span>
+            </div>
+
+            <div class="tarjeta-controles">
+              <button
+                type="button"
+                class="btn-cantidad"
+                aria-label="Restar cantidad"
+              >
+                -
+              </button>
+
+              <button
+                type="button"
+                class="btn-cantidad btn-cantidad--sumar"
+                aria-label="Sumar cantidad"
+              >
+                +
+              </button>
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>
