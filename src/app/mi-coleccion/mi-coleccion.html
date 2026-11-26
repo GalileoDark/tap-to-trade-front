@@ -11,11 +11,18 @@
   </header>
 
   <div class="coleccion-cuerpo">
-    <div class="grid-coleccion" #gridColeccion>
+    <div
+      class="grid-coleccion"
+      appMaxEnFila
+      #fila="maxEnFila"
+      [limiteMaximo]="5"
+      [anchoMinimoTarjeta]="160"
+      [gapPx]="16"
+    >
       @for (item of itemsVisibles(); track item.id; let i = $index) {
         <article
           class="tarjeta-coleccion"
-          [class.tarjeta-oculta]="!mostrarTodos() && i >= maxEnFila()"
+          [class.tarjeta-oculta]="!mostrarTodos() && i >= fila.maxEnFila()"
         >
           <div class="tarjeta-imagen-wrap">
             <img

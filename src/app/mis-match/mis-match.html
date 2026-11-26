@@ -1,0 +1,52 @@
+<section class="coleccion-contenedor">
+  <header class="coleccion-cabecera">
+    <h2>Matches</h2>
+    <button
+      type="button"
+      class="coleccion-ver-mas"
+      (click)="alternarVerMas()"
+    >
+      {{ mostrarTodos() ? 'Ver menos' : 'Ver más' }}
+    </button>
+  </header>
+
+  <div class="coleccion-cuerpo">
+    <div
+      class="grid-coleccion"
+      appMaxEnFila
+      #fila="maxEnFila"
+      [limiteMaximo]="5"
+      [anchoMinimoTarjeta]="160"
+      [gapPx]="16"
+    >
+      @for (match of matchesVisibles(); track match.id; let i = $index) {
+        <article
+          class="tarjeta-coleccion"
+          [class.tarjeta-oculta]="!mostrarTodos() && i >= fila.maxEnFila()"
+        >
+          <div class="tarjeta-imagen-wrap">
+            <img
+              [src]="match.imagen"
+              [alt]="'Match con ' + match.usuario"
+              class="tarjeta-imagen"
+            />
+          </div>
+
+          <div class="tarjeta-contenido">
+            <h3 class="tarjeta-titulo">{{ match.usuario }}</h3>
+
+            <div class="tarjeta-cantidad-fila">
+              <span class="tarjeta-cantidad-label">Buscas que tiene:</span>
+              <span class="tarjeta-cantidad-valor">{{ match.cartasQueBuscoQueTiene }}</span>
+            </div>
+
+            <div class="tarjeta-cantidad-fila">
+              <span class="tarjeta-cantidad-label">Tienes que busca:</span>
+              <span class="tarjeta-cantidad-valor">{{ match.cartasQueTengoQueBusca }}</span>
+            </div>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>
