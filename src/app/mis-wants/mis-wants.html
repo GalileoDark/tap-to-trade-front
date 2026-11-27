@@ -1,0 +1,79 @@
+<section class="coleccion-contenedor">
+  <header class="coleccion-cabecera">
+    <h2>Mis wants</h2>
+
+    <div class="coleccion-acciones">
+      <button
+        type="button"
+        class="coleccion-ver-mas coleccion-btn--destacado"
+        (click)="onBuscarCarta()"
+      >
+        <svg
+          class="coleccion-btn-icono"
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <circle cx="11" cy="11" r="8" />
+          <path d="m21 21-4.3-4.3" />
+        </svg>
+        <span>Buscar carta</span>
+      </button>
+
+      <button
+        type="button"
+        class="coleccion-ver-mas"
+        [disabled]="sinWants()"
+        (click)="alternarVerMas()"
+      >
+        {{ mostrarTodos() ? 'Ver menos' : 'Ver más' }}
+      </button>
+    </div>
+  </header>
+
+  <div class="coleccion-cuerpo">
+    @if (sinWants()) {
+      <p class="coleccion-vacio">
+        Aún no hay cartas en tu lista de wants, añade alguna carta.
+      </p>
+    } @else {
+      <div
+        class="grid-coleccion"
+        appMaxEnFila
+        #fila="maxEnFila"
+        [limiteMaximo]="5"
+        [anchoMinimoTarjeta]="160"
+        [gapPx]="16"
+      >
+        @for (want of wantsVisibles(); track want.id; let i = $index) {
+          <article
+            class="tarjeta-coleccion"
+            [class.tarjeta-oculta]="!mostrarTodos() && i >= fila.maxEnFila()"
+          >
+            <div class="tarjeta-imagen-wrap">
+              <img
+                [src]="want.imagen"
+                [alt]="want.nombre"
+                class="tarjeta-imagen"
+              />
+            </div>
+
+            <div class="tarjeta-contenido">
+              <h3 class="tarjeta-titulo">{{ want.nombre }}</h3>
+
+              <div class="tarjeta-cantidad-fila">
+                <span class="tarjeta-cantidad-label">Cantidad:</span>
+                <span class="tarjeta-cantidad-valor">{{ want.cantidad }}</span>
+              </div>
+            </div>
+          </article>
+        }
+      </div>
+    }
+  </div>
+</section>

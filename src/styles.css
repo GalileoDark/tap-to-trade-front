@@ -52,16 +52,69 @@ html, body {
   color: var(--texto-principal);
 }
 
+.coleccion-acciones {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
 .coleccion-ver-mas {
-  padding: 6px 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  height: 2rem;
+  min-height: 2rem;
+  max-height: 2rem;
+  padding: 0 0.85rem;
   font-size: 0.875rem;
   font-weight: 500;
+  line-height: 1;
   color: var(--texto-principal);
   background-color: var(--bg-suave);
   border: 1px solid var(--borde-bloque);
   border-radius: 6px;
+  box-sizing: border-box;
   cursor: pointer;
-  transition: background-color 0.2s ease, border-color 0.2s ease;
+  transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.coleccion-ver-mas span {
+  line-height: 1;
+}
+
+.coleccion-ver-mas:hover:not(:disabled) {
+  background-color: var(--bg-bloque);
+  border-color: var(--acento);
+}
+
+.coleccion-ver-mas:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.coleccion-ver-mas.coleccion-btn--destacado {
+  background-color: var(--acento);
+  border-color: var(--acento);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.coleccion-ver-mas.coleccion-btn--destacado:hover:not(:disabled) {
+  background-color: var(--acento-hover, var(--acento));
+  border-color: var(--acento-hover, var(--acento));
+  color: #ffffff;
+  filter: brightness(0.92);
+}
+
+.coleccion-btn-icono {
+  width: 0.875rem;
+  height: 0.875rem;
+  min-width: 0.875rem;
+  min-height: 0.875rem;
+  flex-shrink: 0;
+  display: block;
 }
 
 .coleccion-ver-mas:hover {
@@ -198,6 +251,13 @@ html, body {
   display: none;
 }
 
+.coleccion-vacio {
+  margin: 0;
+  padding: 1rem 0.5rem;
+  text-align: center;
+  color: var(--texto-secundario);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .coleccion-ver-mas,
   .tarjeta-coleccion,
@@ -208,4 +268,6 @@ html, body {
   .tarjeta-coleccion:hover {
     transform: none;
   }
+
+
 }
